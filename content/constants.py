@@ -1,7 +1,6 @@
 """Game's constants """
 
 #File and pictures
-lab="Labyrinthe.json"
 background_picture="floors.png"
 Mcgyver="Mcgyver.png"
 Guardian="Guardian.png"
