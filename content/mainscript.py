@@ -19,7 +19,19 @@ from classes import *
 
 pygame.init()
 
-main_window = pygame.display.set_mode((window_side,window_side))
+main_window= pygame.display.set_mode((window_side,window_side))
 
-main()
+continuer = 1
+while continuer:
+	for event in pygame.event.get():
+		if event.type == QUIT:
+			continuer = 0
 
+			
+	for element in json.load(open("labyrinthe.json")):
+
+		Labyrinth=Structure("labyrinthe.json")
+		Labyrinth.loading(main_window)
+
+
+	
