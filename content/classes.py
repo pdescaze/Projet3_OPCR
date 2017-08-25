@@ -15,10 +15,11 @@ class Structure():
 		self.file = file
 		
 
-
 	def loading(self,main_window):
 
-		
+		window_sidex=0				#MARCHE QUAND ECRIT ICI MAIS PAS QUAND DANS CONSTANTS.PY ALORS QUE LES AUTRES CONSTANTES MARCHENT ???!!!
+		window_sidey=0
+
 		for element in json.load(open(self.file)):
 			for i in element:
 				if i == "w":
@@ -48,8 +49,36 @@ class Structure():
 			window_sidex=0
 			window_sidey+=sprite_size
 
+
+
+
+class Character():
+
+	def __init__(self,picture,file):
+		self.picture=picture
+		self.file=file
 		
+	def loading(self,main_window):
+
+		start_x=0
+		start_y=0
+		window_sidex=0
+		window_sidey=0
 
 
+		for element in json.load(open(self.file)):
+			for i in element:
+				if i == "s":
+					start_x,start_y=window_sidex,window_sidey
+				window_sidex+=sprite_size
+			window_sidex=0
+			window_sidey+=sprite_size	
+
+		player = pygame.image.load(self.picture).convert_alpha()
+		player = pygame.transform.scale(player, (player_sprite_size, player_sprite_size))
+		position_player=player.get_rect(center = (start_x +20 ,start_y +20))
+		main_window.blit(player,position_player)
+		pygame.display.flip()
 
 
+	
