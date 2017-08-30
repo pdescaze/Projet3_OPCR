@@ -17,28 +17,50 @@ from constants import *
 from classes import *
 
 
+
 pygame.init()
 
 main_window= pygame.display.set_mode((window_side,window_side))
-continuer=1
 
-Labyrinth=Structure("labyrinthe.json")
-Labyrinth.loading(main_window)
-pygame.display.flip()
-
-Mcgyver=Character("Mcgyver.png","labyrinthe.json")
-Mcgyver.loading(main_window)
-	
-
-while continuer:
+proceed=1
+while proceed:
 
 	pygame.time.Clock().tick(30)
 
+	Labyrinth=Structure("labyrinthe.json")
+	Labyrinth.loading(main_window)
+	pygame.display.flip()
+
+	Mcgyver=Character("Mcgyver.png","labyrinthe.json")
+	Mcgyver.loading(main_window)
+	Guardian=Opponent("guardian.png","labyrinthe.json")
+	Guardian.loading(main_window)
+	proceed_game=1
+	
 	for event in pygame.event.get():
-		if event.type == QUIT:
-			continuer = 0
 
-		
-	
+			if event.type == QUIT:
+				proceed=0
+				proceed_game=0
 
+
+	while proceed_game:
 	
+		for event in pygame.event.get():
+
+			if event.type == QUIT:
+				proceed=0
+				proceed_game=0
+
+			elif event.type == KEYUP:
+				if event.key == K_UP:
+					Mcgyver.movement("up")
+				if event.key == K_DOWN:
+					Mcgyver.movement("down")
+				if event.key == K_RIGHT:
+					Mcgyver.movement("right")
+				if event.key == K_LEFT:
+					Mcgyver.movement("left")
+
+			main_window.blit(Mcgyver.player,Mcgyver.position_player)
+			pygame.display.flip()

@@ -13,3 +13,4 @@ sprite_size=40
 sprite_per_side=15
 window_side=sprite_size*sprite_per_side
 player_sprite_size=35
+object_sprite_size=35
