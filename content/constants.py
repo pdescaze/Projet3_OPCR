@@ -10,6 +10,7 @@ background_field=(320,160,20,20)
 window_title="McGyver escape"
 #Window
 sprite_size=40
+half_sprite=sprite_size/2
 sprite_per_side=15
 window_side=sprite_size*sprite_per_side
 player_sprite_size=35
