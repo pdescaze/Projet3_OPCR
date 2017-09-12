@@ -25,9 +25,7 @@ class Structure():
 		self.window_sidey=0
 		self.ligne_number=0
 		self.sprite_number=0
-		self.cropped_start=""
-		self.cropped_field=""
-
+		
 
 	def loading(self,main_window):
 
