@@ -1,8 +1,8 @@
 """Game's constants """
 
 #File and pictures
-background_picture="floors.png"
-Dead="blood.png"
+background_picture="images/floors.png"
+Dead="images/blood.png"
 background_wall=(280,220,20,20)	
 background_arrival=(160,20,20,20)
 background_start=(160,20,20,20)

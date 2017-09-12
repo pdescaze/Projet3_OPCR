@@ -6,12 +6,10 @@ import sys
 import json
 import pygame
 from pygame.locals import *
-from random import randrange
 from random import randint
 
 
-from constants import *
-from classes import *
+from content.constants import *
 
 
 class Structure():
@@ -25,8 +23,11 @@ class Structure():
 		self.start_y=0
 		self.window_sidex=0
 		self.window_sidey=0
-		self.ligne_number_s=0
-		self.sprite_number_s=0
+		self.ligne_number=0
+		self.sprite_number=0
+		self.cropped_start=""
+		self.cropped_field=""
+
 
 	def loading(self,main_window):
 
@@ -50,7 +51,7 @@ class Structure():
 					cropped_start=pygame.transform.scale(cropped_start,(sprite_size,sprite_size))
 					main_window.blit(cropped_start,(self.window_sidex,self.window_sidey))
 					self.start_x,self.start_y=self.window_sidex,self.window_sidey
-					self.sprite_number_s,self.ligne_number_s=self.window_sidex/sprite_size,self.window_sidey/sprite_size
+					
 				elif i == "O":
 					background=pygame.image.load(background_picture).convert()
 					cropped_field=background.subsurface(background_field)
@@ -61,7 +62,8 @@ class Structure():
 			self.window_sidex=0
 			self.window_sidey+=sprite_size
 
-
+				
+							
 
 
 class Character():
@@ -75,8 +77,10 @@ class Character():
 		self.window_sidey=0
 		self.position_player=()	
 		self.player=0
-		Struct=Structure("labyrinthe.json")	
-
+		self.ligne_number_s=0
+		self.sprite_number_s=0
+		
+		
 	def loading(self,main_window):
 
 	
@@ -84,6 +88,7 @@ class Character():
 			for i in element:
 				if i == "s":
 					self.start_x,self.start_y=self.window_sidex,self.window_sidey
+					self.sprite_number_s,self.ligne_number_s=int(self.window_sidex/sprite_size),int(self.window_sidey/sprite_size)
 				self.window_sidex+=sprite_size
 			self.window_sidex=0
 			self.window_sidey+=sprite_size	
@@ -93,39 +98,78 @@ class Character():
 		self.position_player=self.player.get_rect(center = (self.start_x + half_sprite ,self.start_y + half_sprite))
 		main_window.blit(self.player,self.position_player)
 		pygame.display.flip()
+		
 
-
-	def movement(self,direction):
+	def movement(self,direction,main_window):
 		
 		structure=json.load(open(self.file))
-		
+		background=pygame.image.load(background_picture).convert()		
 
-
-		if direction == "up":	
-			if structure[Struct.sprite_size_s][Struct.ligne_number_s -1] == "w":
-				self.position_player=self.position_player
+		if direction == "up":
+			if self.ligne_number_s < 0 :
+				self.position_player=self.position_player.move(0,0)
 			else:
-				self.position_player=self.position_player.move(0,-sprite_size)
+				if structure[self.ligne_number_s-1][self.sprite_number_s] != "w":
+					self.position_player=self.position_player.move(0,-sprite_size)
+					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
+						self.cropped_start=background.subsurface(background_start)
+						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
+						self.cropped_field=background.subsurface(background_field)
+						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					self.ligne_number_s-=1
 
 		elif direction == "down":
-			if structure[Struct.sprite_size_s][Struct.ligne_number_s + 1] == "w":
-				self.position_player=self.position_player
+			if self.ligne_number_s >= len(structure)-1:
+				self.position_player=self.position_player.move(0,0)
 			else:
-				self.position_player=self.position_player.move(0,sprite_size)
+				if structure[self.ligne_number_s+1][self.sprite_number_s] != "w":
+					self.position_player=self.position_player.move(0,sprite_size)
+					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
+						self.cropped_start=background.subsurface(background_start)
+						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
+						self.cropped_field=background.subsurface(background_field)
+						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					self.ligne_number_s +=1
 		   
 		elif direction == "left":
-			if structure[Struct.sprite_size_s -1][Struct.ligne_number_s] == "w":
-				self.position_player=self.position_player
+			if self.sprite_number_s < 0:
+				self.position_player=self.position_player.move(0,0)
 			else:
-				self.position_player=self.position_player.move(-sprite_size,0)
-		   
-		elif direction == "right":	
-			if structure[Struct.sprite_size_s +1][Struct.ligne_number_s] == "w":
-				self.position_player=self.position_player
-			else:
-				self.position_player=self.position_player.move(sprite_size,0)
+				if structure[self.ligne_number_s][self.sprite_number_s-1] != "w":
+					self.position_player=self.position_player.move(-sprite_size,0)
+					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
+						self.cropped_start=background.subsurface(background_start)
+						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
+						self.cropped_field=background.subsurface(background_field)
+						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					self.sprite_number_s -=1
 
-		
+		elif direction == "right":	
+			if self.sprite_number_s > sprite_per_side -1:
+				self.position_player=self.position_player.move(0,0)
+			else:
+				if structure[self.ligne_number_s][self.sprite_number_s+1] != "w":
+					self.position_player=self.position_player.move(sprite_size,0)
+					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
+						self.cropped_start=background.subsurface(background_start)
+						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
+						self.cropped_field=background.subsurface(background_field)
+						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
+						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+					self.sprite_number_s +=1
+				
+
 
 
 class Opponent():
@@ -171,17 +215,13 @@ class Object():
 		self.object2=object2
 		self.object3=object3
 		self.main_window=main_window
-		self.ligne_number,self.sprite_number=0,0
-		self.ligne_number2,self.sprite_number2=0,0
-		self.ligne_number3,self.sprite_number3=0,0
 		self.proceed=1
 		self.test_object1,self.test_object2,self.test_object3=False,False,False
+		self.test_item1,self.test_item2,self.test_item3=False,False,False
 
-	def loading(self, main_window):
+	def generate(self):
 
-		
 		structure=json.load(open(self.file))
-		
 
 		while self.proceed:
 
@@ -210,19 +250,38 @@ class Object():
 				else:
 					self.test_item3=True
 
+			if self.test_item1 == True and self.test_item2==True and self.test_item3==True:
+				self.proceed=0
 
-			if self.test_item1 == True and self.test_item2 == True and self.test_item3 == True:
-				self.item1=pygame.image.load(self.object1).convert()			
+	
+	def loading(self,main_window):
+
+			if self.test_item1 == True : 
+				self.item1=pygame.image.load(self.object1).convert_alpha()		
 				self.item1=pygame.transform.scale(self.item1,(object_sprite_size,object_sprite_size))
 				self.position_item1=self.item1.get_rect(center=(self.sprite_number *sprite_size + half_sprite,self.ligne_number*sprite_size+half_sprite))
 				main_window.blit(self.item1,self.position_item1)
-				self.item2=pygame.image.load(self.object2).convert()
+			else:
+				pass
+
+			if self.test_item2 == True:
+				self.item2=pygame.image.load(self.object2).convert_alpha()
 				self.item2=pygame.transform.scale(self.item2,(object_sprite_size,object_sprite_size))												
 				self.position_object2=self.item2.get_rect(center=(self.sprite_number2 *sprite_size + half_sprite,self.ligne_number2*sprite_size+half_sprite))
 				main_window.blit(self.item2,self.position_object2)
-				self.item3=pygame.image.load(self.object3).convert()
+			else:
+				pass
+
+			if self.test_item3 == True:
+				self.item3=pygame.image.load(self.object3).convert_alpha()
 				self.item3=pygame.transform.scale(self.item3,(object_sprite_size,object_sprite_size))												
 				self.position_object3=self.item3.get_rect(center=(self.sprite_number3 *sprite_size + half_sprite,self.ligne_number3*sprite_size+half_sprite))
 				main_window.blit(self.item3,self.position_object3)
-				pygame.display.flip()
-				self.proceed=0
+			else:
+				pass
+
+			pygame.display.flip()
+				
+
+
+
