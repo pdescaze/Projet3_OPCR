@@ -252,32 +252,35 @@ class Object():
 				self.proceed=0
 
 	
-	def loading(self,main_window):
+	def loading(self):
 
 			if self.test_item1 == True : 
-				self.item1=pygame.image.load(self.object1).convert_alpha()		
+				self.pick_item1=pygame.image.load(self.artwork).convert_alpha()
+				self.item1=self.pick_item1.subsurface(artwork_object1)
 				self.item1=pygame.transform.scale(self.item1,(object_sprite_size,object_sprite_size))
 				self.position_item1=self.item1.get_rect(center=(self.sprite_number *sprite_size + half_sprite,self.ligne_number*sprite_size+half_sprite))
-				main_window.blit(self.item1,self.position_item1)
+				self.main_window.blit(self.item1,self.position_item1)
 			else:
 				pass
 
 			if self.test_item2 == True:
-				self.item2=pygame.image.load(self.object2).convert_alpha()
+				self.pick_item2=pygame.image.load(self.artwork).convert_alpha()
+				self.item2=self.pick_item2.subsurface(artwork_object2)
 				self.item2=pygame.transform.scale(self.item2,(object_sprite_size,object_sprite_size))												
-				self.position_object2=self.item2.get_rect(center=(self.sprite_number2 *sprite_size + half_sprite,self.ligne_number2*sprite_size+half_sprite))
-				main_window.blit(self.item2,self.position_object2)
+				self.position_item2=self.item2.get_rect(center=(self.sprite_number2 *sprite_size + half_sprite,self.ligne_number2*sprite_size+half_sprite))
+				self.main_window.blit(self.item2,self.position_item2)
 			else:
 				pass
 
 			if self.test_item3 == True:
 				self.item3=pygame.image.load(self.object3).convert_alpha()
 				self.item3=pygame.transform.scale(self.item3,(object_sprite_size,object_sprite_size))												
-				self.position_object3=self.item3.get_rect(center=(self.sprite_number3 *sprite_size + half_sprite,self.ligne_number3*sprite_size+half_sprite))
-				main_window.blit(self.item3,self.position_object3)
+				self.position_item3=self.item3.get_rect(center=(self.sprite_number3 *sprite_size + half_sprite,self.ligne_number3*sprite_size+half_sprite))
+				self.main_window.blit(self.item3,self.position_item3)
 			else:
 				pass
 
+			return self.position_item1,self.position_item2,self.position_item3
 			pygame.display.flip()
 				
 
