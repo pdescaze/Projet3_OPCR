@@ -14,7 +14,10 @@ import pygame
 from pygame.locals import *
 
 from content.constants import *
-from content.classes import *
+from content.hero import Character
+from content.object import Object
+from content.opponent import Opponent
+from content.structure import Structure
 
 
 
@@ -67,7 +70,6 @@ while proceed_game:
 				
 				
 	main_window.blit(Mcgyver.player,Mcgyver.position_player)
-	Labyrinth.load_frame()
 	Objects.share_position(Mcgyver.position_player)
 	Objects.refresh_load_inventory()
 	Labyrinth.test_position(Mcgyver.position_player,Guardian.position_guardian,Objects.catch_item1,Objects.catch_item2,Objects.catch_item3)
