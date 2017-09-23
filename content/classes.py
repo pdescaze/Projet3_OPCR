@@ -207,15 +207,16 @@ class Opponent():
 
 class Object():
 
-	def __init__(self,file,object1,object2,object3,main_window):
+	def __init__(self,artwork,object3,file,main_window):
 		self.file=file
-		self.object1=object1
-		self.object2=object2
+		self.artwork=artwork 	#object1 and object2
 		self.object3=object3
 		self.main_window=main_window
 		self.proceed=1
-		self.test_object1,self.test_object2,self.test_object3=False,False,False
 		self.test_item1,self.test_item2,self.test_item3=False,False,False
+		self.item_inventory=[]
+		self.catch_item1,self.catch_item2,self.catch_item3=False,False,False
+
 
 	def generate(self):
 
@@ -284,6 +285,9 @@ class Object():
 			pygame.display.flip()
 				
 
+
+
+
 	def load_inventory(self):
 
 		self.inventory = pygame.font.SysFont("monospace", 20)
@@ -291,6 +295,32 @@ class Object():
 		self.main_window.blit(self.inventory_display, inventory_display_position)	
 
 
+
+			
+	def share_position(self,share_position):
+
+		if share_position == self.position_item1 :
+			self.item_inventory.append(1)
+			self.position_item1 = False
+			self.catch_item1 = True
+			return self.position_item1			
+			return self.catch_item1
+		
+		if share_position == self.position_item2:
+			self.item_inventory.append(1)
+			self.position_item2 = False
+			self.catch_item2 = True
+			return self.position_item2			
+			return self.catch_item2
+
+		if share_position == self.position_item3:
+			self.item_inventory.append(1)
+			self.position_item3 = False
+			self.catch_item3 = True
+			return self.position_item3			
+			return self.catch_item3
+	
+	
 	def refresh_load_inventory(self):
 
 		if len(self.item_inventory) == 1:
