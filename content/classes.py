@@ -291,4 +291,21 @@ class Object():
 		self.main_window.blit(self.inventory_display, inventory_display_position)	
 
 
+	def refresh_load_inventory(self):
+
+		if len(self.item_inventory) == 1:
+			self.inventory = pygame.font.SysFont("monospace", 20)
+			self.inventory_display = self.inventory.render("Number of artefacts : 1/3", 1, (255,255,0))
+			self.main_window.blit(self.inventory_display, inventory_display_position)	
+
+		elif len(self.item_inventory) == 2:
+			self.inventory = pygame.font.SysFont("monospace", 20)
+			self.inventory_display = self.inventory.render("Number of artefacts : 2/3", 1, (255,255,0))
+			self.main_window.blit(self.inventory_display, inventory_display_position)	
+
+		elif len(self.item_inventory) == 3:
+			self.inventory = pygame.font.SysFont("monospace", 20)
+			self.inventory_display = self.inventory.render("Number of artefacts : 3/3", 1, (255,255,0))
+			self.main_window.blit(self.inventory_display, inventory_display_position)	
+
 
