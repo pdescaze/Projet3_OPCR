@@ -284,5 +284,11 @@ class Object():
 			pygame.display.flip()
 				
 
+	def load_inventory(self):
+
+		self.inventory = pygame.font.SysFont("monospace", 20)
+		self.inventory_display = self.inventory.render("Number of artefacts : 0/3", 1, (255,255,0))
+		self.main_window.blit(self.inventory_display, inventory_display_position)	
+
 
 
