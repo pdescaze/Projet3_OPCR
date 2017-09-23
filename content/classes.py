@@ -114,11 +114,13 @@ class Structure():
 							
 
 
+
 class Character():
 
-	def __init__(self,picture,file):
+	def __init__(self,picture,file,main_window):
 		self.picture=picture
 		self.file=file
+		self.main_window=main_window
 		self.start_x=0
 		self.start_y=0
 		self.window_sidex=0
@@ -129,7 +131,7 @@ class Character():
 		self.sprite_number_s=0
 		
 		
-	def loading(self,main_window):
+	def loading(self):
 
 	
 		for element in json.load(open(self.file)):
@@ -144,11 +146,11 @@ class Character():
 		self.player = pygame.image.load(self.picture).convert_alpha()
 		self.player = pygame.transform.scale(self.player, (player_sprite_size, player_sprite_size))
 		self.position_player=self.player.get_rect(center = (self.start_x + half_sprite ,self.start_y + half_sprite))
-		main_window.blit(self.player,self.position_player)
+		self.main_window.blit(self.player,self.position_player)
 		pygame.display.flip()
 		
 
-	def movement(self,direction,main_window):
+	def movement(self,direction):
 		
 		structure=json.load(open(self.file))
 		background=pygame.image.load(background_picture).convert()		
@@ -162,11 +164,11 @@ class Character():
 					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
 						self.cropped_start=background.subsurface(background_start)
 						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
 						self.cropped_field=background.subsurface(background_field)
 						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					self.ligne_number_s-=1
 
 		elif direction == "down":
@@ -178,11 +180,11 @@ class Character():
 					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
 						self.cropped_start=background.subsurface(background_start)
 						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
 						self.cropped_field=background.subsurface(background_field)
 						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					self.ligne_number_s +=1
 		   
 		elif direction == "left":
@@ -194,11 +196,11 @@ class Character():
 					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
 						self.cropped_start=background.subsurface(background_start)
 						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
 						self.cropped_field=background.subsurface(background_field)
 						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					self.sprite_number_s -=1
 
 		elif direction == "right":	
@@ -210,13 +212,14 @@ class Character():
 					if structure [self.ligne_number_s][self.sprite_number_s] == "s":
 						self.cropped_start=background.subsurface(background_start)
 						self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_start,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					elif structure[self.ligne_number_s][self.sprite_number_s] == "O":
 						self.cropped_field=background.subsurface(background_field)
 						self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
-						main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
+						self.main_window.blit(self.cropped_field,(self.sprite_number_s * sprite_size,self.ligne_number_s * sprite_size))
 					self.sprite_number_s +=1
 				
+		return self.position_player
 
 
 
