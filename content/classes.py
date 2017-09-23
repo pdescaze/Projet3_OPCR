@@ -172,18 +172,19 @@ class Character():
 
 class Opponent():
 
-	def __init__(self,picture,file):
+	def __init__(self,picture,file,main_window):
 		self.picture=picture
 		self.file=file
+		self.main_window=main_window
 		self.arrival_x=0
 		self.arrival_y=0
 		self.window_sidex=0
 		self.window_sidey=0
-		self.position_player=()	
-		self.player=0
+		self.position_guardian=()	
+		self.guardian=0
 
 
-	def loading(self,main_window):
+	def loading(self):
 
 		
 		for element in json.load(open(self.file)):
@@ -194,12 +195,11 @@ class Opponent():
 			self.window_sidex=0
 			self.window_sidey+=sprite_size	
 
-		self.player = pygame.image.load(self.picture).convert_alpha()
-		self.player = pygame.transform.scale(self.player, (player_sprite_size, player_sprite_size))
-		self.position_player=self.player.get_rect(center = (self.arrival_x +half_sprite ,self.arrival_y +half_sprite))
-		main_window.blit(self.player,self.position_player)
+		self.guardian = pygame.image.load(self.picture).convert_alpha()
+		self.guardian = pygame.transform.scale(self.guardian, (player_sprite_size, player_sprite_size))
+		self.position_guardian=self.guardian.get_rect(center = (self.arrival_x +half_sprite ,self.arrival_y +half_sprite))
+		self.main_window.blit(self.guardian,self.position_guardian)
 		pygame.display.flip()
-
 
 
 
