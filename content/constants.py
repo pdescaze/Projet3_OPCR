@@ -11,7 +11,6 @@ artwork_object1=(32,0,32,32)
 artwork_object2=(160,0,32,32)
 artwork_blood=(192,0,32,32)
 window_title="McGyver escape"
-
 #Window
 sprite_size=40
 x_frame=30
