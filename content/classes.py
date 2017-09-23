@@ -15,7 +15,7 @@ from content.constants import *
 class Structure():
 
 	
-	def __init__(self,file):
+	def __init__(self,file,main_window):
 		self.file = file
 		self.window_sidex=0
 		self.window_sidex=0
@@ -25,9 +25,13 @@ class Structure():
 		self.window_sidey=0
 		self.ligne_number=0
 		self.sprite_number=0
-		
+		self.main_window=main_window
+		self.status=0
+		self.guardian=0
+		self.position_guardian=()
 
-	def loading(self,main_window):
+
+	def loading(self):
 
 		
 		for element in json.load(open(self.file)):
@@ -36,29 +40,40 @@ class Structure():
 					background=pygame.image.load(background_picture).convert()	#téléchargement de la plaquette d'image floors.png
 					cropped_wall=background.subsurface(background_wall)			#sélection et assignation de l'image wall issue de l'image floors
 					cropped_wall=pygame.transform.scale(cropped_wall,(sprite_size,sprite_size))		#transformation de l'échelle (40x40 pixels)
-					main_window.blit(cropped_wall,(self.window_sidex,self.window_sidey))	#collage de l'image wall sur la fenetre principale.
+					self.main_window.blit(cropped_wall,(self.window_sidex,self.window_sidey))	#collage de l'image wall sur la fenetre principale.
 				elif i == "a":
 					background=pygame.image.load(background_picture).convert()
 					cropped_arrival=background.subsurface(background_arrival)
 					cropped_arrival=pygame.transform.scale(cropped_arrival,(sprite_size,sprite_size))
-					main_window.blit(cropped_arrival,(self.window_sidex,self.window_sidey))
+					self.main_window.blit(cropped_arrival,(self.window_sidex,self.window_sidey))
 					self.arrival_x,self.arrival_y=self.window_sidex,self.window_sidey
 				elif i == "s":
 					background=pygame.image.load(background_picture).convert()
 					cropped_start=background.subsurface(background_start)
 					cropped_start=pygame.transform.scale(cropped_start,(sprite_size,sprite_size))
-					main_window.blit(cropped_start,(self.window_sidex,self.window_sidey))
+					self.main_window.blit(cropped_start,(self.window_sidex,self.window_sidey))
 					self.start_x,self.start_y=self.window_sidex,self.window_sidey
 					
 				elif i == "O":
 					background=pygame.image.load(background_picture).convert()
 					cropped_field=background.subsurface(background_field)
 					cropped_field=pygame.transform.scale(cropped_field,(sprite_size,sprite_size))
-					main_window.blit(cropped_field,(self.window_sidex,self.window_sidey))
+					self.main_window.blit(cropped_field,(self.window_sidex,self.window_sidey))
 				self.window_sidex += sprite_size
 				pygame.display.flip()
 			self.window_sidex=0
 			self.window_sidey+=sprite_size
+
+	
+
+	def load_frame(self):
+		self.frame_background=pygame.image.load(background_frame).convert()
+		self.frame_background=pygame.transform.scale(self.frame_background,(1000, 1000))
+		self.main_window.blit(self.frame_background,(frame_side,frame_side))
+		self.frame = pygame.font.SysFont("monospace", 30)
+		self.frame_display = self.frame.render("McGyver Escape", 1, (255,255,0))
+		self.main_window.blit(self.frame_display, title_display_position)
+		pygame.display.flip()
 
 				
 							
