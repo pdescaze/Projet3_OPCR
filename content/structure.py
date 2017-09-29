@@ -111,15 +111,15 @@ class Structure():
 
 	def advices_quit(self):
 		"""Method that blit advices to Quit the game"""
-		self.frame_advice = pygame.font.SysFont("monospace", 20)
-		self.frame_advice_display = self.frame_advice.render(
+		self.frame_advice_quit = pygame.font.SysFont("monospace", 20)
+		self.frame_advice_quit_display = self.frame_advice_quit.render(
 			"To QUIT : Press Red Cross ", 1, (255,0,0))
-		self.main_window.blit(self.frame_advice_display, advice_display_position)
+		self.main_window.blit(self.frame_advice_quit_display, advice_quit_display_position)
 
-		self.frame_advice2 = pygame.font.SysFont("monospace", 20)
-		self.frame_advice2_display = self.frame_advice2.render(
+		self.frame_advice2_quit = pygame.font.SysFont("monospace", 20)
+		self.frame_advice2_quit_display = self.frame_advice2_quit.render(
 			"or Escape Key", 1, (255,0,0))
-		self.main_window.blit(self.frame_advice2_display, advice2_display_position)
+		self.main_window.blit(self.frame_advice2_quit_display, advice2_quit_display_position)
 
 	def test_position(self,position_player,position_guardian,
 		catch_item1,catch_item2,catch_item3):
