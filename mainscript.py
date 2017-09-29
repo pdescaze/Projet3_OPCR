@@ -29,6 +29,8 @@ proceed_main=True
 
 while proceed_main == True:
 
+	pygame.time.Clock().tick()
+	
 	""" Initialization of objects"""
 	Labyrinth=Structure("labyrinth.json",main_window)
 	Mcgyver=Character("pictures/Mcgyver.png","labyrinth.json",main_window)
@@ -62,7 +64,7 @@ while proceed_main == True:
 			
 	while proceed_game == True :
 		"""Loop of each movement realised by Mcgyver and consequences"""
-		pygame.time.Clock().tick(30)
+		pygame.time.Clock().tick()
 
 		for event in pygame.event.get():
 

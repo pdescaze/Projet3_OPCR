@@ -40,7 +40,9 @@ class Opponent():
 			self.window_sidey+=sprite_size	
 
 		self.guardian = pygame.image.load(self.picture).convert_alpha()
-		self.guardian = pygame.transform.scale(self.guardian, (player_sprite_size, player_sprite_size))
-		self.position_guardian=self.guardian.get_rect(center = (self.arrival_x +half_sprite ,self.arrival_y +half_sprite))
+		self.guardian = pygame.transform.scale(self.guardian, (player_sprite_size,
+		 player_sprite_size))
+		self.position_guardian=self.guardian.get_rect(center = (self.arrival_x 
+			+half_sprite ,self.arrival_y +half_sprite))
 		self.main_window.blit(self.guardian,self.position_guardian)
 		pygame.display.flip()
