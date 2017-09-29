@@ -101,7 +101,26 @@ class Structure():
 		self.frame = pygame.font.SysFont("monospace", 30)
 		self.frame_display = self.frame.render("McGyver Escape", 1, (255,255,0))
 		self.main_window.blit(self.frame_display, title_display_position)
-		
+
+	def advices_play(self):
+		"""Method that blit advices to Quit the game"""
+		self.frame_advice_play = pygame.font.SysFont("monospace",20)
+		self.frame_advice_play_display = self.frame_advice_play.render(
+			"To PLAY: Use Directional Arrows", 1, (255,0,0))
+		self.main_window.blit(self.frame_advice_play_display, advice_play_display_position)
+
+	def advices_quit(self):
+		"""Method that blit advices to Quit the game"""
+		self.frame_advice = pygame.font.SysFont("monospace", 20)
+		self.frame_advice_display = self.frame_advice.render(
+			"To QUIT : Press Red Cross ", 1, (255,0,0))
+		self.main_window.blit(self.frame_advice_display, advice_display_position)
+
+		self.frame_advice2 = pygame.font.SysFont("monospace", 20)
+		self.frame_advice2_display = self.frame_advice2.render(
+			"or Escape Key", 1, (255,0,0))
+		self.main_window.blit(self.frame_advice2_display, advice2_display_position)
+
 	def test_position(self,position_player,position_guardian,
 		catch_item1,catch_item2,catch_item3):
 		""" This method tests the collision between the hero and the guardian following
@@ -142,7 +161,9 @@ class Structure():
 			object_sprite_size))
 		self.main_window.blit(self.cropped_arrival,(self.arrival_x,self.arrival_y))
 		self.main_window.blit(self.blood_picture,(self.arrival_x,self.arrival_y))
-		
+
+
+
 
 
 		

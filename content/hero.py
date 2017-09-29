@@ -117,5 +117,7 @@ class Character():
 		#Execution of the method load_frame of the class Structure.
 		#That permits to refresh the adjacent frame
 		self.structure.load_frame()	
+		self.structure.advices_play()
+		self.structure.advices_quit()
 		return self.position_player
 

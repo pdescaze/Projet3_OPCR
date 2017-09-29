@@ -24,4 +24,6 @@ player_sprite_size=35
 object_sprite_size=35
 inventory_display_position=(675,300)
 title_display_position=(700,50)
-
+advice_display_position=(675,480)
+advice2_display_position=(750,500)
+advice_play_display_position=(630,450)

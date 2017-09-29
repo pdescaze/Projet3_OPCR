@@ -46,6 +46,8 @@ while proceed_main == True:
 	Mcgyver.loading()	
 	Guardian.loading()
 	Objects.load_inventory()
+	Labyrinth.advices_quit()
+	Labyrinth.advices_play()
 	pygame.display.flip()	
 
 	proceed_game=True
