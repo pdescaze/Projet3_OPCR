@@ -9,10 +9,9 @@ from pygame.locals import *
 from content.constants import *
 
 
-""" Class that permits to generate and load the labyrinth, the adjacent
- frame and the inventory via methods"""
 class Structure():
-
+	""" Class that permits to generate and load the labyrinth, the adjacent
+ 	frame and the inventory via methods"""
 	def __init__(self,file,main_window):
 		self.file = file
 		self.main_window=main_window
