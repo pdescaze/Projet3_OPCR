@@ -1,0 +1,2 @@
+python 3.X
+pygame 1.9.3
