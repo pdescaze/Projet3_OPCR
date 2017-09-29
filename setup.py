@@ -26,7 +26,7 @@ if sys.platform == "win32":
 
 setup(name="McGyverEscape",
       version="0.1",
-      description="Mac gyver rules",
+      description="Mac gyver game",
       options={"build_exe": build_exe_options},
       executables=[Executable("mainscript.py", base=base,icon=icone)]
       )
