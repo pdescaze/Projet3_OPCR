@@ -3,7 +3,7 @@ import sys
 import json
 import pygame
 from pygame.locals import *
-from random import randint
+
 
 
 from content.constants import *
@@ -25,8 +25,7 @@ class Structure():
 		self.sprite_number=0
 		self.main_window=main_window
 		self.status=0
-		self.guardian=0
-		self.position_guardian=()
+		
 
 
 	def loading(self):
@@ -36,27 +35,27 @@ class Structure():
 			for i in element:
 				if i == "w":
 					background=pygame.image.load(background_picture).convert()	#téléchargement de la plaquette d'image floors.png
-					cropped_wall=background.subsurface(background_wall)			#sélection et assignation de l'image wall issue de l'image floors
-					cropped_wall=pygame.transform.scale(cropped_wall,(sprite_size,sprite_size))		#transformation de l'échelle (40x40 pixels)
-					self.main_window.blit(cropped_wall,(self.window_sidex,self.window_sidey))	#collage de l'image wall sur la fenetre principale.
+					self.cropped_wall=background.subsurface(background_wall)			#sélection et assignation de l'image wall issue de l'image floors
+					self.cropped_wall=pygame.transform.scale(self.cropped_wall,(sprite_size,sprite_size))		#transformation de l'échelle (40x40 pixels)
+					self.main_window.blit(self.cropped_wall,(self.window_sidex,self.window_sidey))	#collage de l'image wall sur la fenetre principale.
 				elif i == "a":
 					background=pygame.image.load(background_picture).convert()
-					cropped_arrival=background.subsurface(background_arrival)
-					cropped_arrival=pygame.transform.scale(cropped_arrival,(sprite_size,sprite_size))
-					self.main_window.blit(cropped_arrival,(self.window_sidex,self.window_sidey))
+					self.cropped_arrival=background.subsurface(background_arrival)
+					self.cropped_arrival=pygame.transform.scale(self.cropped_arrival,(sprite_size,sprite_size))
+					self.main_window.blit(self.cropped_arrival,(self.window_sidex,self.window_sidey))
 					self.arrival_x,self.arrival_y=self.window_sidex,self.window_sidey
 				elif i == "s":
 					background=pygame.image.load(background_picture).convert()
-					cropped_start=background.subsurface(background_start)
-					cropped_start=pygame.transform.scale(cropped_start,(sprite_size,sprite_size))
-					self.main_window.blit(cropped_start,(self.window_sidex,self.window_sidey))
+					self.cropped_start=background.subsurface(background_start)
+					self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
+					self.main_window.blit(self.cropped_start,(self.window_sidex,self.window_sidey))
 					self.start_x,self.start_y=self.window_sidex,self.window_sidey
 					
 				elif i == "O":
 					background=pygame.image.load(background_picture).convert()
-					cropped_field=background.subsurface(background_field)
-					cropped_field=pygame.transform.scale(cropped_field,(sprite_size,sprite_size))
-					self.main_window.blit(cropped_field,(self.window_sidex,self.window_sidey))
+					self.cropped_field=background.subsurface(background_field)
+					self.cropped_field=pygame.transform.scale(self.cropped_field,(sprite_size,sprite_size))
+					self.main_window.blit(self.cropped_field,(self.window_sidex,self.window_sidey))
 				self.window_sidex += sprite_size
 				pygame.display.flip()
 			self.window_sidex=0
@@ -78,6 +77,8 @@ class Structure():
 		self.cropped_start=pygame.transform.scale(self.cropped_start,(sprite_size,sprite_size))
 		self.main_window.blit(self.cropped_start,(sprite_number_s * sprite_size,ligne_number_s * sprite_size))
 
+
+	
 	def load_frame(self):
 		self.frame_background=pygame.image.load(background_frame).convert()
 		self.frame_background=pygame.transform.scale(self.frame_background,(window_side_x - frame_side,window_side_y))
@@ -100,14 +101,16 @@ class Structure():
 
 		return self.status
 
-
-
+	
 	def load_victory(self,victory_picture):
 
 		self.victory_picture=pygame.image.load(victory_picture).convert()
 		self.victory_picture.set_colorkey((255,255,255))
 		self.victory_picture=pygame.transform.scale(self.victory_picture,(window_side_x,window_side_y))
 		self.main_window.blit(self.victory_picture,(0,0))
+		self.main_window.blit(self.cropped_arrival,(self.arrival_x,self.arrival_y))
+		
+
 
 
 	def load_defeat(self,defeat_picture,artwork):
@@ -120,8 +123,9 @@ class Structure():
 		self.pick_blood_picture=pygame.image.load(artwork).convert_alpha()
 		self.blood_picture=self.pick_blood_picture.subsurface(artwork_blood)
 		self.blood_picture=pygame.transform.scale(self.blood_picture,(object_sprite_size,object_sprite_size))
+		self.main_window.blit(self.cropped_arrival,(self.arrival_x,self.arrival_y))
 		self.main_window.blit(self.blood_picture,(self.arrival_x,self.arrival_y))
-
+		
 
 
 		

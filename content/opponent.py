@@ -6,7 +6,7 @@ import sys
 import json
 import pygame
 from pygame.locals import *
-from random import randint
+
 
 
 from content.constants import *

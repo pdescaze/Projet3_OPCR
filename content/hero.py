@@ -6,7 +6,7 @@ import sys
 import json
 import pygame
 from pygame.locals import *
-from random import randint
+
 
 
 from content.constants import *
@@ -56,7 +56,8 @@ class Character():
 	def movement(self,direction):
 		
 		structure=json.load(open(self.file))
-		
+	
+	
 		if direction == "up":
 			if self.ligne_number_s < 0 :
 				self.position_player=self.position_player.move(0,0)
@@ -108,9 +109,8 @@ class Character():
 						self.structure.load_field(self.sprite_number_s,self.ligne_number_s)
 					self.sprite_number_s +=1
 		
-		self.structure.load_frame()
+		self.structure.load_frame()	
+		
 
-
-				
 		return self.position_player
 
