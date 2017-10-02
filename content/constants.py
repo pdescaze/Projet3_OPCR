@@ -1,29 +1,29 @@
 """Game's constants """
 
 #File and pictures
-background_picture="pictures/floors.png"
-background_frame="pictures/blackbackground.png"
-background_wall=(280,220,20,20)	
-background_arrival=(160,20,20,20)
-background_start=(160,20,20,20)
-background_field=(320,160,20,20)
-artwork_object1=(32,0,32,32)
-artwork_object2=(160,0,32,32)
-artwork_blood=(192,0,32,32)
-window_title="McGyver Escape"
+BACKGROUND_PICTURE = "pictures/floors.png"
+BACKGROUND_FRAME = "pictures/blackbackground.png"
+BACKGROUND_WALL = (280, 220, 20, 20)	
+BACKGROUND_ARRIVAL = (160, 20, 20, 20)
+BACKGROUND_START = (160, 20, 20, 20)
+BACKGROUND_FIELD = (320, 160, 20, 20)
+ARTWORK_OBJECT1 = (32, 0, 32, 32)
+ARTWORK_OBJECT2 = (160, 0, 32, 32)
+ARTWORK_BLOOD = (192, 0, 32, 32)
+WINDOW_TITLE = "McGyver Escape"
 
 #Window
-sprite_size=40
-x_frame=30
-half_sprite=sprite_size/2
-sprite_per_side=15
-window_side_x=(sprite_size + x_frame) * sprite_per_side
-window_side_y=sprite_size * sprite_per_side
-frame_side_x=sprite_size * sprite_per_side
-player_sprite_size=35
-object_sprite_size=35
-inventory_display_position=(675,300)
-title_display_position=(700,50)
-advice_quit_display_position=(675,480)
-advice2_quit_display_position=(750,500)
-advice_play_display_position=(630,450)
+SPRITE_SIZE = 40
+X_FRAME = 30
+HALF_SPRITE = SPRITE_SIZE / 2
+SPRITE_PER_SIDE = 15
+WINDOW_SIDE_X = (SPRITE_SIZE + X_FRAME) * SPRITE_PER_SIDE
+WINDOW_SIDE_Y = SPRITE_SIZE * SPRITE_PER_SIDE
+FRAME_SIDE_X = SPRITE_SIZE * SPRITE_PER_SIDE
+PLAYER_SPRITE_SIZE = 35
+OBJECT_SPRITE_SIZE = 35
+INVENTORY_DISPLAY_POSITION = (675, 300)
+TITLE_DISPLAY_POSITION = (700, 50)
+ADVICE_QUIT_DISPLAY_POSITION = (675, 480)
+ADVICE2_QUIT_DISPLAY_POSITION = (750, 500)
+ADVICE_PLAY_DISPLAY_POSITION = (630, 450)
