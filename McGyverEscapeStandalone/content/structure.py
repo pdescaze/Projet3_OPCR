@@ -18,12 +18,20 @@ class Structure():
 		#Initialization of the window side
 		self.window_sidex = 0
 		self.window_sidey = 0
-		#Initialization of start x and y
+		#Initialization of start/arrival x and y
 		self.start_x = 0
 		self.start_y = 0
+		self.arrival_x = 0
+		self.arrival_y = 0
 		#Initialization of line_number and sprite_number
 		self.line_number = 0
 		self.sprite_number = 0
+		#Initialization of cropped parts of floors.png
+		self.cropped_wall = 0
+		self.cropped_start = 0
+		self.cropped_field = 0
+		self.cropped_arrival = 0
+		
 
 	def loading(self):
 		""" method that permits to browse self.file and identify every character
