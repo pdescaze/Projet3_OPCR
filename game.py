@@ -82,13 +82,13 @@ while PROCEED_MAIN:
 		main_window.blit(mcgyver.player, mcgyver.position_player)
 		objects.share_position(mcgyver.position_player)
 		objects.refresh_load_inventory()
-		labyrinth.test_position(mcgyver.position_player, guardian.position_guardian, \
+		mcgyver.test_position(guardian.position_guardian, \
 			objects.catch_item1, objects.catch_item2, objects.catch_item3)
 
-		if labyrinth.status == 1:
+		if mcgyver.status == 1:
 			labyrinth.load_defeat("pictures/defeat.png", "pictures/artwork.png")
 			PROCEED_GAME = 0
-		elif labyrinth.status == 2:
+		elif mcgyver.status == 2:
 			labyrinth.load_victory("pictures/victory.png")
 			PROCEED_GAME = 0
 		else:

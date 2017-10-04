@@ -14,7 +14,6 @@ class Structure():
 	def __init__(self, file, main_window):
 		self.file = file
 		self.main_window = main_window
-		self.status = 0
 		#Initialization of the window side
 		self.window_sidex = 0
 		self.window_sidey = 0
@@ -127,20 +126,6 @@ class Structure():
 		self.frame_advice2_quit_display = self.frame_advice2_quit.render(\
 			"or Escape Key", 1, (255, 0, 0))
 		self.main_window.blit(self.frame_advice2_quit_display, ADVICE2_QUIT_DISPLAY_POSITION)
-
-	def test_position(self, position_player, position_guardian, \
-		catch_item1, catch_item2, catch_item3):
-		""" This method tests the collision between the hero and the guardian following
-		the number of objects caught. If all the objects are caught, self.status=2
-		else, self.status=1 """
-		if position_player == position_guardian:
-			if catch_item1 == False or catch_item2 == False or catch_item3 == False:
-				self.status = 1
-			else:
-				self.status = 2
-		else:
-			pass
-		return self.status
 
 	def load_victory(self, victory_picture):
 		""" This method permits to load the victory picture, available only if

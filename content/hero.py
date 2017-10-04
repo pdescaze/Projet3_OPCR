@@ -16,6 +16,7 @@ class Character():
 		self.picture = picture
 		self.file = file
 		self.main_window = main_window
+		self.status = 0
 		#Initialization of x and y of start position
 		self.start_x = 0
 		self.start_y = 0
@@ -117,3 +118,17 @@ class Character():
 		self.structure.advices_play()
 		self.structure.advices_quit()
 		return self.position_player
+
+	def test_position(self, position_guardian, \
+		catch_item1, catch_item2, catch_item3):
+		""" This method tests the collision between the hero and the guardian following
+		the number of objects caught. If all the objects are caught, self.status=2
+		else, self.status=1 """
+		if self.position_player == position_guardian:
+			if catch_item1 == False or catch_item2 == False or catch_item3 == False:
+				self.status = 1
+			else:
+				self.status = 2
+		else:
+			pass
+		return self.status
