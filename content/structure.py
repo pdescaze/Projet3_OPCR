@@ -54,7 +54,7 @@ class Structure():
 					self.cropped_arrival = pygame.transform.scale(self.cropped_arrival, (SPRITE_SIZE, \
 						SPRITE_SIZE))
 					self.main_window.blit(self.cropped_arrival, (self.window_sidex, self.window_sidey))
-					#Obtaining arriva_x and arrival_y
+					#Obtaining arrival_x and arrival_y
 					self.arrival_x, self.arrival_y = self.window_sidex, self.window_sidey
 				elif i == "s":
 					background = pygame.image.load(BACKGROUND_PICTURE).convert()

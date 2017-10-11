@@ -9,7 +9,7 @@ import pygame
 from pygame.locals import *
 
 from content.constants import WINDOW_SIDE_X, WINDOW_SIDE_Y
-from content.hero import Character
+from content.hero import Hero
 from content.object import Object
 from content.opponent import Opponent
 from content.structure import Structure
@@ -27,7 +27,7 @@ while PROCEED_MAIN:
 
 	#Initialization of objects
 	labyrinth = Structure("labyrinth.json", main_window)
-	mcgyver = Character("pictures/Mcgyver.png", "labyrinth.json", main_window)
+	mcgyver = Hero("pictures/Mcgyver.png", "labyrinth.json", main_window)
 	objects = Object("pictures/artwork.png", "pictures/needle.png", "labyrinth.json", main_window)
 	guardian = Opponent("pictures/guardian.png", "labyrinth.json", main_window)
 

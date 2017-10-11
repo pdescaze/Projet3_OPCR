@@ -8,7 +8,7 @@ from pygame.locals import *
 from content.constants import SPRITE_PER_SIDE, SPRITE_SIZE, PLAYER_SPRITE_SIZE, HALF_SPRITE
 from content.structure import Structure
 
-class Character():
+class Hero():
 	""" Class for the hero. Permits to generate his position and load
 	the hero picture at its right position. Also permits via movement method
 	to move the hero inside the labyrinth with directional arrows"""
