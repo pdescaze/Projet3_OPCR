@@ -58,6 +58,8 @@ class Object():
 					self.test_item2 = False
 				else:
 					self.test_item2 = True
+			else:
+				self.test_item2 = False
 
 			if self.line_number3 != self.line_number and self.line_number3 != self.line_number2 \
 			or self.line_number3 == self.line_number and self.sprite_number3 != self.sprite_number \
@@ -66,9 +68,13 @@ class Object():
 					self.test_item3 = False
 				else:
 					self.test_item3 = True
+			else:
+				self.test_item3 = False
 
 			if self.test_item1 == True and self.test_item2 == True and self.test_item3 == True:
 				self.proceed = 0
+			else:
+				self.proceed = 1
 
 	def loading(self):
 		""" Method that permits to load the picture of objects at their randomly
